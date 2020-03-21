@@ -201,7 +201,7 @@ $$f^{\prime}(\theta) = \lim_{\epsilon \to 0}\, \frac{f(\theta + \epsilon) - f(\t
 
 Where the error is $O(\epsilon)$ for nonzero $\epsilon$. For small values of $\epsilon$, this provides a much more accurate approximation for the derivative.
 
-# gradient checking
+## gradient checking
 
 take W1, b1, ... WL, bL and reshape/concatenate into vector theta. same with dW, db etc.
 

@@ -131,6 +131,8 @@ n = 1_000_000
 w = np.random.rand(n)
 x = np.random.rand(n)
 b = np.random.rand(1)
+
+np.random.seed(1)
 ```
 We may be tempted to try this:
 ```python
@@ -146,8 +148,8 @@ print('for loop: ' + str(1000*(end-start))[:5] + ' ms')
 ```
 
 ```
-[249732.27694854]
-for loop: 340.1 ms
+[249825.0610044]
+for loop: 330.1 ms
 ```
 
 Using vectors, we would write the following:
@@ -161,7 +163,30 @@ print(z)
 print('dot product: ' + str(1000*(end-start))[:5] + ' ms')
 ```
 ```
-[249732.27694854]
-dot product: 0.966 ms
+[249825.06100441]
+dot product: 1.001 ms
 ```
 This is over a 300x speed improvement for the same calculation!
+
+# A note about different `numpy` array multiplcation methods
+
+Most `numpy` methods are element-wise.
+
+## 1D $\times$ 1D
+
+```python
+p = np.array([1, 3, 5])
+q = np.array([2, 4, 6])
+
+print(p * q)
+print(np.dot(p, q))
+print(np.multiply(p, q))
+print(np.matmul(p, q))
+```
+
+```
+[ 2 12 30]
+44
+[ 2 12 30]
+44
+```

@@ -38,4 +38,25 @@ incorrectly labeled example: the data is incorrectly labeled
 
 deep learning algorithms are quite robust to **random** errors in the training set, but not systematic errors
 
-when analyzing mislabeled dev set, add an "incorrectly labeled" column
+when analyzing mislabeled dev set, add an "incorrectly labeled" column to assess the percent of errors
+
+apply process to dev and test sets to make sure they continue to come from the same distribution
+
+consider examining examples your algorithm got right. maybe it got lucky with an incorrectly labeled example. but it's much easier to validate the mislabels on an accurate algorithm
+
+manually counting the fraction of errors is a very good use of your time in order to prioritize how to optimize your algorithm.
+
+# build quickly, then iterate
+
+how do you pick which to focus on?
+
+if you're tackling a problem for the first time, don't overthink and just build something quick and dirty.
+
+- decide where to set up your target. set up dev/test set and metric
+- build initial system quickly
+- use bias/variance analysis and error analysis to prioritize your next steps
+
+eg. if you realize that most of your errors in the dev set come from a certain subset of your training set, THEN focus on improving performance in that area. use results of your analysis to prioritize where to go next.
+
+this does not quite apply if you have significant prior experience or if you are drawing from a large body of academic literature in the subject.
+

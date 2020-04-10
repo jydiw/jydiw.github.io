@@ -1,29 +1,39 @@
 ---
-title: "Logistic Regression Basics"
+title: "Statistical Learning Basics"
 excerpt_separator: "<!--more-->"
 categories:
-  - DLS
   - data science basics
 tags:
-  - logistic regression
-  - classification
+  - statistical learning
+  -
 ---
+
+# What Is Statistical Learning?
+
+Suppose we are asked by a client to provide advice on how to improve sales of a particular product. We are given a data set that shows the `sales` of that product, along with the advertising budgets for the product for three different media: `TV`, `radio`, and `newspaper`. It's impossible for our client to increase sales directly, but they do have control over the advertising budgets in each of the three media. Therefore, if we determine that there is an association between advertising budget and sales, we can suggest changing those budgets to thereby increase sales.
+
+In other words,
 
 The problems we solve in data science fall into two broad categories:
 
 1. linear regression
 2. classification
 
-As the name suggests, the **linear regression** model is appropriate when predicting the value of linear variables (e.g. `income`) and will always predict values from $-\infty$ to $+\infty$.
+As the name suggests, the **linear regression** model is appropriate when predicting a quantitative response (e.g. `income`, `revenue`), and will always predict values from $-\infty$ to $+\infty$.
 
 A **classification** model predicts discrete variables (e.g. `color` or `city`).
 
-The **logistic regression** is a popular classification algorithm that shares many properties with the highly interpretable and computationally lean linear regression model. As such, it is by far the most common classification algorithm.
+The **linear regression** is a popular classification algorithm that shares many properties with the highly interpretable and computationally lean linear regression model. As such, it is by far the most common classification algorithm.
 
-# The Linear Regression
+# Expected Value and the Naive Prediction
+
+
+
+For a more detailed background on linear regression, visit (LINEAR REGRESSION).
+
 Consider the linear regression equation:
 
-$$\hat{y} = w_1x_1 + w_2x_2 + \cdots + w_nx_n + b = \sum_{i=1}^{n} w_ix_i + b$$
+$$\hat{y} = \hat{b} + \hat{w}_1x_1 + \hat{w}_2x_2 + \cdots + \hat{w}_nx_n= \hat{b} + \sum_{i=1}^{n} \hat{w}_ix_i$$
 
 >- $x_i$ -- the $i$th independent variable
 >- $w_i$ -- the $i$th coefficient

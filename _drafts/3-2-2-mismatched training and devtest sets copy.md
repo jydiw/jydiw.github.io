@@ -10,6 +10,8 @@ tags:
   -
 ---
 
+It is always needed in real world practice to find out human level performance on both train set and dev set when data mismatch occurs because both data sets are from different distributions. In such data mismatch situation, the human-level performance on data from train set is no longer representative for human-level performance on the data from dev set.
+
 # training and testing on different distributions
 
 cat app example

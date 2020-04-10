@@ -12,6 +12,21 @@ tags:
 
 # ML strategy
 
+summary:
+- start with a basic model to see what mistakes it makes
+- compare to human performance and apply error analysis to plan how to improve algorithm performance
+  - sample from mislabeled dev set
+- consider adding outside data if your current dataset is small
+  - make sure your dev and test set come from distributions you actually care about
+- consider synthesizing data to emulate misclassified examples
+  - be careful of overfitting
+- make sure dev and test set belong to the same distribution
+  - DL algorithms are usually robust to having different train and dev distributions
+- consider transfer learning
+  - only if new learning task is similar and has less data
+- consider multi-task learning
+- if you have an enormous amount of data that could easily map from X to Y, consider an end-to-end approach
+
 what to do to increase accuracy:
 
 - collect more training data

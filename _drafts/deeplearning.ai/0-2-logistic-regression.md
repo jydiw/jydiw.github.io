@@ -9,15 +9,6 @@ tags:
   - classification
 ---
 
-The problems we solve in data science fall into two broad categories:
-
-1. linear regression
-2. classification
-
-As the name suggests, the **linear regression** model is appropriate when predicting the value of *quantitative* response variables (e.g. `income`) and will always predict values from $-\infty$ to $+\infty$.
-
-A **classification** model is appropriate when predicting the value of *qualitative* or *categorical* response variables (e.g. `color` or `medical condition`). since it involves assigning the observation to a discrete *class*.
-
 # Binary Classification
 
 Just as we see in the linear regression setting, our binary classification (two-class classification) begins with a set of examples $x^{(1)}, x^{(2)}, \dotsc, x^{(m)}$ that we must map to the values of our response variable $y^{(1)}, y^{(2)}, \dotsc, y^{(m)}$. If we were training a model to categorize images as either `cat` or `not cat`, we could attempt to map this model in the following way:

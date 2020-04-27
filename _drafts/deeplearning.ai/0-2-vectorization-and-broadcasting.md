@@ -10,13 +10,21 @@ tags:
   -
 ---
 
+Vectorization is the process of expressing our calculations as matrix operations. This allows us to have concise notation as well as utilize linear algebra packages (such as `Numpy`) to speed up our work.
+
+Broadcasting describes the process of applying different arithmetic operations to arrays of different shapes.
+
 # Vectorized Regressions
 
-Recall the general form of the linear regression equation with $n$ features:
+Recall the general form of the linear regression equation with $n$ input variables:
 
-$$z =  \sum_{i=1}^{n} w_ix_i + b$$
+$$\hat{y} = \hat{\beta_0} + \sum_{i=1}^{n} \hat{\beta}_ix_i$$
 
-> From this point forward, we will be swapping out statistical language with terms more commonly used in the machine learning community:
+We will rewrite the above expression to align with what is followed in the machine learning community:
+
+$$z = b + \sum_{i=1}^{n} w_ix_i$$
+
+> From this point forward, we will be removing the "hats" from our symbols and swapping out statistical language with terms more commonly used in the machine learning community:
 >
 >- $x_i$ -- the $i$th *feature*
 >- $w_i$ -- the $i$th *weight*
@@ -48,15 +56,15 @@ x_2 \\
 x_n \\
 \end{bmatrix} = w_1x_1 + w_2x_2 + \cdots + w_nx_n = \sum_{i=1}^{n} w_ix_i$$
 
-> We'll find that expressing this product as the matrix multiplication of the transpose allows us to scale up this notation to vectorize neural networks.
+> Note: Using matrix multiplication allows us to scale up this notation.
 
-It follows that the linear regression equation can be written as:
+It follows that the *vectorized* linear regression equation can be written as:
 
 $$z = \mathbf{w}^T \mathbf{x} + b$$
 
 ## Vectorized Regression with $m$ Examples
 
-We could then represent multiple examples with unique vectors where $\mathbf{x}^{(j)}$ is the $j$th example vector with feature values $x_1^{(j)}$, $x_2^{(j)}$, etc.:
+Vectorizing our regression allows us to quickly represent how we would apply regression to multiple examples. We could then represent multiple examples with unique vectors, where the $j$th example vector is written as a superscript with round brackets: $\mathbf{x}^{(j)}$:
 
 $$\mathbf{x}^{(j)} = \begin{bmatrix}
 |\\
@@ -97,6 +105,7 @@ x_n^{(1)} & x_n^{(2)} & \cdots & x_n^{(m)} \\
 \sum_{i=1}^{n} w_ix_i^{(1)} & \sum_{i=1}^{n} w_ix_i^{(2)} & \cdots & \sum_{i=1}^{n} w_ix_i^{(m)}
 \end{bmatrix}$$
 
+## Broadcasting our bias $b$
 From the previous section, $z = \sum_{i=1}^{n} w_ix_i + b$. It follows that:
 
 $$\mathbf{z} = \begin{bmatrix}
@@ -105,7 +114,7 @@ z^{(1)} & z^{(2)} & \cdots & z^{(m)}
 \sum_{i=1}^{n} w_ix_i^{(1)} + b & \sum_{i=1}^{n} w_ix_i^{(2)} + b & \cdots & \sum_{i=1}^{n} w_ix_i^{(m)} + b
 \end{bmatrix} = \mathbf{w}^{\mathrm{T}}X + b$$
 
->Those who are mathematicians may balk at the above notation for $b$.  not changing with each example, $\mathbf{b}$ has to be the same dimension as $\mathbf{w}^{\mathrm{T}}X$ (that is, a $1 \times m$ matrix) in order for the matrix addition to work.
+>$\mathbf{b}$ has to be the same dimension as $\mathbf{w}^{\mathrm{T}}X$ (that is, a $1 \times m$ matrix) in order for the matrix addition to work. Here we *broadcast* the operation of adding $b$ over the entire array of $\mathbf{w}^{\mathrm{T}}X$--that is, we add $b$ to every value in the array.
 
 We can then represent the predictions as:
 $$\mathbf{\hat{y}} = g(\mathbf{z}) = \begin{bmatrix}
@@ -127,12 +136,12 @@ Let's codify $z =  \sum_{i=1}^{n} w_ix_i + b$ with a million features:
 import time
 import numpy as np
 
+np.random.seed(1)
+
 n = 1_000_000
 w = np.random.rand(n)
 x = np.random.rand(n)
 b = np.random.rand(1)
-
-np.random.seed(1)
 ```
 We may be tempted to try this:
 ```python
@@ -156,6 +165,7 @@ Using vectors, we would write the following:
 
 ```python
 start = time.time()
+# note that np.dot(w, x) and b have different shapes
 z = np.dot(w, x) + b
 end = time.time()
 
@@ -167,26 +177,3 @@ print('dot product: ' + str(1000*(end-start))[:5] + ' ms')
 dot product: 1.001 ms
 ```
 This is over a 300x speed improvement for the same calculation!
-
-# A note about different `numpy` array multiplcation methods
-
-Most `numpy` methods are element-wise.
-
-## 1D $\times$ 1D
-
-```python
-p = np.array([1, 3, 5])
-q = np.array([2, 4, 6])
-
-print(p * q)
-print(np.dot(p, q))
-print(np.multiply(p, q))
-print(np.matmul(p, q))
-```
-
-```
-[ 2 12 30]
-44
-[ 2 12 30]
-44
-```

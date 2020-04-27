@@ -10,24 +10,26 @@ tags:
 
 # What Is Statistical Learning?
 
-Suppose we are asked by a client to provide advice on how to improve sales of a particular product. We are given a data set that shows the `sales` of that product, along with the advertising budgets for the product for three different media: `TV`, `radio`, and `newspaper`. It's impossible for our client to increase sales directly, but they do have control over the advertising budgets in each of the three media. Therefore, if we determine that there is an association between advertising budget and sales, we can suggest changing those budgets to thereby increase sales.
+Statistical learning refers to a vast set of tools for understanding data and can be split into two broad categories:
 
-In other words,
+- **Supervised** statistical learning: building a model to predict or estimate an *output* based on one or more *inputs*
+- **Unsupervised** statistical learning: building a model to establish structure or relationships within the data with no supervising output
 
-The problems we solve in data science fall into two broad categories:
+Statistical learning techniques belonging to either of the above categories can also fall under the following:
 
-1. linear regression
-2. classification
+- **Linear regression**: appropriate when predicting quantitative responses (e.g. `income`, `revenue`)
+- **Classification**: appropriate when predicting qualitative, discrete variables (e.g. `color` or `city`)
 
-As the name suggests, the **linear regression** model is appropriate when predicting a quantitative response (e.g. `income`, `revenue`), and will always predict values from $-\infty$ to $+\infty$.
+Below are a few examples of the different types of statistical learning:
 
-A **classification** model predicts discrete variables (e.g. `color` or `city`).
+| | Supervised | Unsupervised |
+| ------------- |-------------| -----|
+| **Regression**| Linear Regression<br>Decision Tree Regression |  |
+| **Classification** | centered      |   $12 |
 
-The **linear regression** is a popular classification algorithm that shares many properties with the highly interpretable and computationally lean linear regression model. As such, it is by far the most common classification algorithm.
+# Linear Regression
 
-# Expected Value and the Naive Prediction
-
-
+Linear regression
 
 For a more detailed background on linear regression, visit (LINEAR REGRESSION).
 
@@ -59,6 +61,10 @@ $$
 We know that no linear combination of cats would sum up to a dog (e.g. $\text{cat} - \text{cat} \neq \text{dog}$). Furthermore, values such as $0.5$, $1.2$, and $-0.3$ would not hold any real-world meaning (e.g. cat-dog, super-cat, or anti-dog). How do we confine our function to only output within the range $[0, 1]$?
 
 > We only focus on range $[0, 1]$ since we previously defined the bounds to mean `dog` and `cat`, respectively. If we had defined our categories as $1$ and $2$ we would want to confine our model to the range $[1, 2]$.
+
+
+
+The **logistic regression** is a popular classification algorithm that shares many properties with the highly interpretable and computationally lean linear regression model. As such, it is by far the most common classification algorithm.
 
 # The Logistic Regression
 The logistic regression is a mathematical model that allows us to map the *probability* of belonging to one of multiple categories:

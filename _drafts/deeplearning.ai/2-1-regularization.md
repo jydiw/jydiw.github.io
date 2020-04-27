@@ -1,5 +1,5 @@
 ---
-title: "DLS Basics: Train, Holdout, and Test Sets"
+title: "DLS Basics: Regularization"
 excerpt_separator: "<!--more-->"
 categories:
   - python
